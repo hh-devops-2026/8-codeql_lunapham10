@@ -53,5 +53,7 @@ jobs:
       run: |
         docker run -d -p 8080:8080 --name test-app go-web-server
         sleep 3
-        docker logs test-app
+        docker exec test-app pwd
+        docker exec test-app ls -la
+        docker exec test-app ls -la safe-files
         curl -fv "http://localhost:8080/readfile?file=hello.txt"
