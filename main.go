@@ -25,6 +25,13 @@ func readFileHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "File not found", 404)
 		return
 	}
+	filePath := filepath.Join("safe-files", fileName)
+
+    data, err := os.ReadFile(filePath)
+    if err != nil {
+        http.Error(w, "File not found", http.StatusNotFound)
+        return
+    }
 	w.Write(data)
 }
 
